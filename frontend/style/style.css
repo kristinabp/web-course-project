@@ -1,0 +1,118 @@
+body{
+    background-color: #d2e8ff;
+    background-repeat: no-repeat;
+    font-family: "Monaco",  monospace;
+    background-image: url(../images/6916461_preview.png);
+    background-size: 70%;
+}
+header{
+    display:flex;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+header h1{
+    border-bottom: 1px solid #4169e1;
+    color: #4169e1;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-radius: 15px;
+    padding: 10px;
+}
+
+header h1:hover{
+    letter-spacing: 3px;
+    color: #2850c9;
+    transition-duration: 1s;
+}
+
+ul{
+    margin-top: 0px;
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+}
+
+ul li{
+    padding:15px;
+    list-style-type: none;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+a{
+    border-top:1px solid #2850c9;
+    border-radius: 10px;
+    background-color: #a4d2ff;
+    color: black;
+    padding: 10px;
+    text-decoration: none;
+}
+
+a:hover{
+    background-color: #587be6;
+    color: white;
+    transition-duration: 0.5s;
+    letter-spacing: 2px;
+}
+
+#user-form{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+section{
+    padding: 5px;
+}
+
+section input{
+    width: 240px;
+    border-top: 0;
+    border-bottom: 1px solid #587be6;
+    border-left:1px solid #587be6;
+    border-right: 0;
+    padding:7px;
+    border-radius: 10px;
+    background-color: #d2e8ff;
+    color: #173eb3;
+    font-size: 15px;
+    font-family: "Monaco",  monospace;
+}
+
+section input:hover{
+    border-color:#052891;
+}
+
+section input:current{
+    border-color:#173eb3;
+}
+
+button{
+    border-top:1px solid #2850c9;
+    border-radius: 10px;
+    background-color: #a4d2ff;
+    color: black;
+    padding: 10px;
+    border-bottom: 0;
+    border-left: 0;
+    border-right: 0;
+    text-transform: uppercase;
+    text-decoration: solid;
+    font-size: 15px;
+    font-family: "Monaco",  monospace;
+    margin-top: 10px;
+}
+
+button:hover{
+    background-color: #587be6;
+    color: white;
+    transition-duration: 0.5s;
+    letter-spacing: 1px;
+}
+
+label{
+    color: #173eb3;
+    text-transform: uppercase;
+}

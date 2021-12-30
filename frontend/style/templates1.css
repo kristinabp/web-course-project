@@ -1,0 +1,33 @@
+h1  {
+	text-align: center;
+  color:#4169e1;
+  transition: width 2s;
+  margin-top:0cm;
+}
+header h1:hover{
+    letter-spacing: 1px;
+    color: #2850c9;
+    transition-duration: 1s;
+}
+#layouts
+{
+   text-align:center;
+   background-color: #b2d3f7;
+  
+   margin-left: 6cm;
+   margin-right: 6cm;
+   margin-bottom: 1cm;
+   border-style: solid;
+   border-radius: 1.5cm;
+   border-color: #6398d1;
+   color:#000000;
+   
+}
+#layouts:hover
+{
+    background-color:#6998ca;
+}
+img {
+    border: 8px solid #ddd;
+  border-radius: 3px;
+  }
