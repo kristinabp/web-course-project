@@ -57,7 +57,7 @@ a:hover{
     letter-spacing: 2px;
 }
 
-#user-form{
+#user-form , #login-form{
     display:flex;
     flex-direction: column;
     align-items: center;
