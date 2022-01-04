@@ -67,15 +67,7 @@ const onFormSubmitted = event => {
 		.then(response=>response.json())
 		.then(response => {
 			if (response.success) {
-				var popup = document.getElementById("successful-registration");
-				//var login = document.getElementsByClassName("login")[0];
-				
-				popup.style.display = "block";
-				
-				//login.onclick = function() {
-				  //popup.style.display = "none";
-				  //window.location.replace("../login/login.html");
-				//}
+				location.replace("../register/afterreg.html");
 			} else {
 				document.getElementById('user-message').innerText = response.message;
 			}

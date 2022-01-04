@@ -6,22 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link href="../style/style.css" rel="stylesheet">
+    <script   defer src="./login.js"></script>
 </head>
 <body>
 
     <header>
         <h1>Вход</h1>
     </header>
-    <form id="user-form" action="../../api/login.php" method="post" target="_blank">
+    <form id="login-form">
         <section>
             <input id="username" type="text" placeholder="Потребителско име" name="username">
         </section>
         <section>
             <input id="password" type="password" placeholder="Парола" name="password">
         </section>
-       
-           <a href="afterlogin.html"> Вход</a>
+       <footer>
+           <button type="submit" class="btn">Вход</button>
         </footer>
+        <p id="user-message"></p>
     </form>
 </body>
 </html>

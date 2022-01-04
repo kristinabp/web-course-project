@@ -114,6 +114,37 @@
             }
 	
         }
+	    
+	    public function checkLogin(): void {
+        
+            require_once "../db/db.php";
+    
+            try{
+                $db = new DB();
+                $conn = $db->getConnection();
+            }
+            catch (PDOException $e) {
+                echo json_encode([
+                    'success' => false,
+                    'message' => "Неуспешно свързване с базата данни",
+                ]);
+                exit();
+            }
+            
+            $selectStatement = $conn->prepare("SELECT * FROM `users` WHERE username = :username");
+            $result = $selectStatement->execute(['username' => $this->username]);
+            
+            $dbUser = $selectStatement->fetch();
+            if ($dbUser == false) {
+                throw new Exception("Грешно потребителско име.");
+            }
+            
+            if (!password_verify($this->password, $dbUser['password'])) {
+                throw new Exception("Грешна парола.");
+            }
+    
+        }
+
 
     }
 
