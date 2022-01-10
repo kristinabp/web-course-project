@@ -18,7 +18,6 @@
             $stmt->execute($_SESSION["user"]["id"]);
             $invitations= $stmt->fetchAll(PDO::FETCH_ASSOC);
             var_dump($invitations);
-            var_dump("jeljf");
 
 
         } catch (PDOException $e) {

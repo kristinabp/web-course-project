@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add information</title>
     <link href="../style/style2.css" rel="stylesheet">
+    <script src="information.js" defer></script>
 </head>
 <body>
     <nav>
@@ -22,25 +23,35 @@
 
     <form id="user-form">
         <section>
-            <input id="name" type="text" placeholder="Име">
+            <input id="title" type="text" placeholder="Име" name="title">
+            <p id="title-error" class="errorMsg"></p>
         </section>
         <section>
-            <input id="fn" type="text" placeholder="Факултетен номер">
+            <input id="fn" type="text" placeholder="Факултетен номер" name="fn">
+            <p id="fn-error" class="errorMsg"></p>
         </section>
         <section>
-            <input id="date" type="date" placeholder="Дата">
+            <input id="date" type="date" placeholder="Дата" name="date">
+            <p id="date-error" class="errorMsg"></p>
         </section>
         <section>
-            <input id="time" type="time" placeholder="Час">
+            <input id="time" type="time" placeholder="Час" name="time">
+            <p id="time-error" class="errorMsg"></p>
         </section>
         <section>
-            <input id="subject" type="text" placeholder="Тема">
+            <input id="subject" type="text" placeholder="Тема" name="subject">
+            <p id="subject-error" class="errorMsg"></p>
         </section>
         <section>
-            <input id="place" type="text" placeholder="Място">
+            <input id="place" type="text" placeholder="Място" name="place">
+            <p id="place-error" class="errorMsg"></p>
+        </section>
+        <section>
+            <input id="invitation" type="file" name="invitation">
         </section>
         <footer class="form-item">
-            <button class="btn">Добави</button>
+            <button type="submit" class="btn">Добави</button>
+            <p id="user-message"></p>
         </footer>
     </form>
 </body>

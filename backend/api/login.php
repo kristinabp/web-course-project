@@ -28,14 +28,21 @@ if (!isset($input['username']) || !isset($input['password'])) {
 
         try {
 
-            $user->checkLogin();
             
+           $id= $user->checkLogin();
 
             $_SESSION['username'] = $input['username'];
+
+            
+            
+          
 
             echo json_encode([
                 'success' => true,
                 'username' => $_SESSION['username'],
+                'role' => $id,
+                
+                
             ]);
             
         } catch (Exception $e) {
@@ -43,6 +50,7 @@ if (!isset($input['username']) || !isset($input['password'])) {
             echo json_encode([
                 'success' => false,
                 'message' => $e->getMessage(),
+                'role' =>false,
             ]);
         }
     }  

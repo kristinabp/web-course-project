@@ -115,7 +115,7 @@
 	
         }
 	    
-	    public function checkLogin(): void {
+	     public function checkLogin():int {
         
             require_once "../db/db.php";
     
@@ -135,6 +135,9 @@
             $result = $selectStatement->execute(['username' => $this->username]);
             
             $dbUser = $selectStatement->fetch();
+
+            $rolelogin=$dbUser['role_id'];
+
             if ($dbUser == false) {
                 throw new Exception("Грешно потребителско име.");
             }
@@ -142,11 +145,9 @@
             if (!password_verify($this->password, $dbUser['password'])) {
                 throw new Exception("Грешна парола.");
             }
+
+            return $rolelogin;
     
         }
-
-
     }
-
-
 ?>
