@@ -118,3 +118,17 @@ label{
     color: #173eb3;
     text-transform: uppercase;
 }
+
+table{
+    display: flex;
+    justify-content: center;
+}
+
+table th{
+    background-color: #a4d2ff;
+    border: 1px solid #173eb3;
+    padding: 10px 70px 10px 5px;
+    border-radius: 10px;
+    color:#173eb3;
+    text-transform: uppercase;
+}

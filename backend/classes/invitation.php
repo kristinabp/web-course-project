@@ -8,13 +8,56 @@
         public $subject;
         public $place;
 
-        function __construct($title, $fn, $date, $time, $subject, $place) {
+        public function __construct()
+    {
+        $arguments = func_get_args();
+        $numberOfArguments = func_num_args();
+
+        if (method_exists($this, $function = '__construct'.$numberOfArguments)) {
+            call_user_func_array(array($this, $function), $arguments);
+        }
+    }
+
+        public function __construct6($title, $fn, $date, $time, $subject, $place) {
             $this->title = $title;
             $this->fn = $fn;
             $this->date = $date;
             $this->time = $time;
             $this->subject = $subject;
             $this->place = $place;
+        }
+
+        public function __construct7($title, $date, $time, $subject, $place, $user_id, $dump) {
+            $this->title = $title;
+            $this->date = $date;
+            $this->time = $time;
+            $this->subject = $subject;
+            $this->place = $place;
+            $this->fn = getUserFn($user_id);
+        }
+
+        private function getUserFn($id): int
+        {
+            require_once "../db/db.php";
+
+            try{
+                $db = new DB();
+                $connection = $db->getConnection();
+            }
+            catch (PDOException $e) {
+                echo json_encode([
+                    'success' => false,
+                    'message' => "Неуспешно свързване с базата данни",
+                ]);
+            }
+
+            $sql = "SELECT users.fn 
+                    FROM invitations 
+                    join users on invitations.user_id = users.id 
+                    WHERE users.id = $id";
+            $stmt = $connection->prepare($sql);
+            $userId = $selectStatement->fetch();
+            return $userId;
         }
 
         public function validate(): void
