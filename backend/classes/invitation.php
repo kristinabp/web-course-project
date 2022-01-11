@@ -2,68 +2,26 @@
 
     class Invitation {
         public $title;
-        public $fn;
+        public $user_id;
         public $date;
         public $time;
         public $subject;
         public $place;
 
-        public function __construct()
-    {
-        $arguments = func_get_args();
-        $numberOfArguments = func_num_args();
-
-        if (method_exists($this, $function = '__construct'.$numberOfArguments)) {
-            call_user_func_array(array($this, $function), $arguments);
-        }
-    }
-
-        public function __construct6($title, $fn, $date, $time, $subject, $place) {
-            $this->title = $title;
-            $this->fn = $fn;
-            $this->date = $date;
-            $this->time = $time;
-            $this->subject = $subject;
-            $this->place = $place;
-        }
-
-        public function __construct7($title, $date, $time, $subject, $place, $user_id, $dump) {
+        function __construct($title, $date, $time, $subject, $place, $user_id) {
             $this->title = $title;
             $this->date = $date;
             $this->time = $time;
             $this->subject = $subject;
             $this->place = $place;
-            $this->fn = getUserFn($user_id);
-        }
-
-        private function getUserFn($id): int
-        {
-            require_once "../db/db.php";
-
-            try{
-                $db = new DB();
-                $connection = $db->getConnection();
-            }
-            catch (PDOException $e) {
-                echo json_encode([
-                    'success' => false,
-                    'message' => "Неуспешно свързване с базата данни",
-                ]);
-            }
-
-            $sql = "SELECT users.fn 
-                    FROM invitations 
-                    join users on invitations.user_id = users.id 
-                    WHERE users.id = $id";
-            $stmt = $connection->prepare($sql);
-            $userId = $selectStatement->fetch();
-            return $userId;
+            $this->place
         }
 
         public function validate(): void
         {
             if(empty($this->title))
             {
+                echo $this->title;
                 throw new Exception("Името на презентацията е задължително.");
             }
             if(empty($this->date))
@@ -85,6 +43,52 @@
 
         }
 
+        private function getUserId(): int
+        {
+            require_once "../db/db.php";
+
+            try{
+                $db = new DB();
+                $connection = $db->getConnection();
+            }
+            catch (PDOException $e) {
+                echo json_encode([
+                    'success' => false,
+                    'message' => "Неуспешно свързване с базата данни",
+                ]);
+            }
+
+            $sql = "SELECT id 
+                    FROM users
+                    WHERE fn = $this->fn";
+            $stmt = $connection->prepare($sql);
+            $userId = $stmt->fetch();
+            return $userId;
+        }
+
+        private function getUserRole(): int
+        {
+            require_once "../db/db.php";
+
+            try{
+                $db = new DB();
+                $connection = $db->getConnection();
+            }
+            catch (PDOException $e) {
+                echo json_encode([
+                    'success' => false,
+                    'message' => "Неуспешно свързване с базата данни",
+                ]);
+            }
+
+            $sql = "SELECT role_id
+                    FROM users
+                    WHERE fn = $this->fn";
+            $stmt = $connection->prepare($sql);
+            $userRole = $stmt->fetch();
+            return $userRole;
+        }
+
         public function insertInvitation(): void
         {
             require_once "../db/db.php";
@@ -100,7 +104,7 @@
                 ]);
             }
 
-            $user_id = getUserId();
+            $user_id = $this->getUserId();
             $sql = "INSERT INTO invitations (title, date, time, subject, place, user_id) VALUES (:title, :date, :time, :subject, :place, :user_id)";
             $stmt = $connection->prepare($sql);
             $insertResult = $stmt->execute([
@@ -119,53 +123,7 @@
 	
         }
 
-        private function getUserId(): int
-        {
-            require_once "../db/db.php";
-
-            try{
-                $db = new DB();
-                $connection = $db->getConnection();
-            }
-            catch (PDOException $e) {
-                echo json_encode([
-                    'success' => false,
-                    'message' => "Неуспешно свързване с базата данни",
-                ]);
-            }
-
-            $sql = "SELECT users.id 
-                    FROM invitations 
-                    join users on invitations.user_id = users.id 
-                    WHERE users.fn = $this->fn";
-            $stmt = $connection->prepare($sql);
-            $userId = $selectStatement->fetch()[0];
-            return $userId;
-        }
-
-        public function getUserRole(): int
-        {
-            require_once "../db/db.php";
-
-            try{
-                $db = new DB();
-                $connection = $db->getConnection();
-            }
-            catch (PDOException $e) {
-                echo json_encode([
-                    'success' => false,
-                    'message' => "Неуспешно свързване с базата данни",
-                ]);
-            }
-
-            $sql = "SELECT users.role_id 
-                    FROM invitations 
-                    join users on invitations.user_id = users.id 
-                    WHERE users.fn = $this->fn";
-            $stmt = $connection->prepare($sql);
-            $userRole = $selectStatement->fetch()[0];
-            return $userRole;
-        }
+        
     }
 
 

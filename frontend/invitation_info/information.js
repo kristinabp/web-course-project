@@ -60,11 +60,11 @@ const onFormSubmitted = event => {
 			if (response.success) {
 				if(response.role == '7')
             	{
-                location.replace("../invitations/uploadedinv_student.html");
+                	location.replace("../invitations/uploadedinv_students.php");
             	}
-            	else 
+            	else
 				{
-                location.replace("../invitations/uploadedinv_teacher.html");
+                	location.replace("../invitations/uploadedinv_teacher.php");
             	}
 			} 
 			else {

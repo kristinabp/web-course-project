@@ -27,15 +27,9 @@ if (!isset($input['username']) || !isset($input['password'])) {
         $user = new User( $input['username'], $input['password'], null, null, null, null);
 
         try {
-
-            
            $id= $user->checkLogin();
 
             $_SESSION['username'] = $input['username'];
-
-            
-            
-          
 
             echo json_encode([
                 'success' => true,

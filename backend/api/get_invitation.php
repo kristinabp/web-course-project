@@ -1,4 +1,6 @@
 <?php
+    session_start();
+
     $phpInput = json_decode(file_get_contents('php://input'), true);
     require_once "../classes/invitation.php";
 

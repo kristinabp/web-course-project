@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple invitations</title>
     <link href="../style/style2.css" rel="stylesheet">
-    <script src="./uploadedinv.js" defer></script>
 </head>
 <body>
     <nav>

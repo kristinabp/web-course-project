@@ -18,7 +18,7 @@
     <header>
         <h1>Качени покани</h1>
     </header>
-    <table>
+    <table id="table-inv">
         <tr>
             <th>№</th>
             <th>Заглавие</th>
@@ -27,24 +27,7 @@
             <th>Предмет</th>
             <th>Място на презентиране</th>
         </tr>
-        <?php
-        $conn = mysqli_connect("localhost", "root", "", "invitations_generator");
-        if($conn->connect_error)
-        {
-            die("Connection failed:".$conn->connect_error);
-        }
-
-        $sql = "select * from `invitations`";
-        $result = $conn->query($sql);
-        if($result->num_rows > 0)
-        {
-            while($row = $result->fetch_assoc())
-            {
-                echo "<tr><th>".$row["id"]."</th><th>".$row['title']."</th><th>".$row['date']."</th><th>".$row['time']."</th><th>".$row['subject']."</th><th>".$row['place']."</th></tr>";
-            }
-            echo "</table>";
-        }
-        ?>
+        
     </table>
 </body>
 </main>

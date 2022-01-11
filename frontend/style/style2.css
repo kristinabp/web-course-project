@@ -111,7 +111,6 @@ button:hover{
     background-color: #587be6;
     color: white;
     transition-duration: 0.5s;
-    letter-spacing: 1px;
 }
 
 label{
