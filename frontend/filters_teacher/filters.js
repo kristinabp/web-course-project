@@ -1,17 +1,23 @@
-function getInvitations() {
-    fetch("../../backend/api/show_all_invitations.php")
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Грешка при зареждане на поканите');
-        }
-        return response.json();
-    })
+const onFormSubmitшed = event => {
+    event.preventDefault();
+
+    const formElement = event.target;
+	
+    const formData = {
+		date: formElement.querySelector("input[name='date']").value
+    };
+	
+	const fields = [
+		formData.date, 
+	];
+	
+    fetch('../../backend/api/filter_by_date.php', {
+		method: 'POST',
+		body: JSON.stringify(formData),
+	})
     .then(data => {
         invitations = data.value;
         placeInvitations(invitations);
-    })
-    .catch(error => {
-        console.error('Грешка при зареждане на поканите.');
     });
 }
 
@@ -26,4 +32,5 @@ function placeInvitations(invitations)
     })
     
 }
-getInvitations();
+
+document.getElementById("user-form").addEventListener("click", onFormSubmitшed);

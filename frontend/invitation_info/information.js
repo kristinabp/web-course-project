@@ -25,7 +25,6 @@ const onFormSubmitted = event => {
 	
     const formData = {
 		title: formElement.querySelector("input[name='title']").value,
-		fn: formElement.querySelector("input[name='fn']").value,
 		date: formElement.querySelector("input[name='date']").value,
         time: formElement.querySelector("input[name='time']").value,
         subject: formElement.querySelector("input[name='subject']").value,
@@ -34,7 +33,6 @@ const onFormSubmitted = event => {
 	
 	const fields = [
 		formData.title,
-		formData.fn,
 		formData.date, 
 		formData.time,
 		formData.subject,	
@@ -43,7 +41,6 @@ const onFormSubmitted = event => {
 	
 	const errors = [
 		formElement.querySelector("p[id='title-error']").innerText,
-		formElement.querySelector("p[id='fn-error']").innerText,
 		formElement.querySelector("p[id='date-error']").innerText, 
 		formElement.querySelector("p[id='time-error']").innerText,
 		formElement.querySelector("p[id='subject-error']").innerText,
@@ -60,11 +57,11 @@ const onFormSubmitted = event => {
 			if (response.success) {
 				if(response.role == '7')
             	{
-                	location.replace("../invitations/uploadedinv_students.php");
+                	location.replace("../invitations/uploadedinv_students.html");
             	}
-            	else
-				{
-                	location.replace("../invitations/uploadedinv_teacher.php");
+            	if(response.role == '8')
+            	{
+                	location.replace("../invitations/uploadedinv_teacher.html");
             	}
 			} 
 			else {

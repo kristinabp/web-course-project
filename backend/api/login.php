@@ -27,14 +27,20 @@ if (!isset($input['username']) || !isset($input['password'])) {
         $user = new User( $input['username'], $input['password'], null, null, null, null);
 
         try {
-           $id= $user->checkLogin();
+           $user_info= $user->checkLogin();
+           //var_dump($user_info);
 
-            $_SESSION['username'] = $input['username'];
+            $_SESSION['username'] = $user_info['username'];
+            $_SESSION['id']=$user_info['id'];
+            $_SESSION['role_id']=$user_info['role_id'];
+
+           // var_dump($_SESSION);
+          
 
             echo json_encode([
                 'success' => true,
                 'username' => $_SESSION['username'],
-                'role' => $id,
+                'role' => $_SESSION['role_id'],
                 
                 
             ]);

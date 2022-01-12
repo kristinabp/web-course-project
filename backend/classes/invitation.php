@@ -14,7 +14,7 @@
             $this->time = $time;
             $this->subject = $subject;
             $this->place = $place;
-            $this->place
+            $this->user_id = $user_id;
         }
 
         public function validate(): void
@@ -36,57 +36,6 @@
             {
                 throw new Exception("Името на предмета е задължително.");
             }
-            if(empty($this->fn))
-            {
-                throw new Exception("Факултетният номер е задължителен.");
-            }
-
-        }
-
-        private function getUserId(): int
-        {
-            require_once "../db/db.php";
-
-            try{
-                $db = new DB();
-                $connection = $db->getConnection();
-            }
-            catch (PDOException $e) {
-                echo json_encode([
-                    'success' => false,
-                    'message' => "Неуспешно свързване с базата данни",
-                ]);
-            }
-
-            $sql = "SELECT id 
-                    FROM users
-                    WHERE fn = $this->fn";
-            $stmt = $connection->prepare($sql);
-            $userId = $stmt->fetch();
-            return $userId;
-        }
-
-        private function getUserRole(): int
-        {
-            require_once "../db/db.php";
-
-            try{
-                $db = new DB();
-                $connection = $db->getConnection();
-            }
-            catch (PDOException $e) {
-                echo json_encode([
-                    'success' => false,
-                    'message' => "Неуспешно свързване с базата данни",
-                ]);
-            }
-
-            $sql = "SELECT role_id
-                    FROM users
-                    WHERE fn = $this->fn";
-            $stmt = $connection->prepare($sql);
-            $userRole = $stmt->fetch();
-            return $userRole;
         }
 
         public function insertInvitation(): void
@@ -104,7 +53,6 @@
                 ]);
             }
 
-            $user_id = $this->getUserId();
             $sql = "INSERT INTO invitations (title, date, time, subject, place, user_id) VALUES (:title, :date, :time, :subject, :place, :user_id)";
             $stmt = $connection->prepare($sql);
             $insertResult = $stmt->execute([
@@ -113,7 +61,7 @@
                 "time"=>$this->time, 
                 "subject"=>$this->subject, 
                 "place"=>$this->place,
-                "user_id"=>$user_id]);
+                "user_id"=>$this->user_id]);
             
             if (!$insertResult) {
                 $errorInfo = $insertStatement->errorInfo();
@@ -122,7 +70,6 @@
             }
 	
         }
-
         
     }
 

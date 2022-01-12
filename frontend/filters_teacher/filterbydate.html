@@ -6,13 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>After Login</title>
     <link href="../style/style2.css" rel="stylesheet">
+    <script src="filters.js" defer></script>
 </head>
 <body>
     
     <nav>
         <ul>
             <li><a href="../invitation_info/information_t.html">Качи покана</a></li>
-            <li><a href="../invitations/uploadedinv_teacher.php">Качени покани</a></li>
+            <li><a href="../invitations/uploadedinv_teacher.html">Качени покани</a></li>
             <li><a href="../filters_teacher/filter.html">Филтрирай покани</a></li>
         </ul>
     </nav> 
@@ -23,12 +24,16 @@
 
     <form id="user-form">
         <section>
-            <input id="date" type="date" placeholder="Дата">
+            <input id="date" type="date" placeholder="Дата" name="date">
         </section>
         <footer class="form-item">
             <button class="btn">Филтрирай</button>
         </footer>
     </form>
+
+    <table id="table-inv">
+
+    </table>
 
 </body>
 </html>
