@@ -1,6 +1,6 @@
 # web-course-project
 
-System that enables students to upload their presentation invitation.
+System that enables students to upload their presentation invitations.
 
 This is a team project for the WEB Technologies course. The website is created using HTML and CSS for the front-end part and Javascript 
 and PHP for the back-end part. 
