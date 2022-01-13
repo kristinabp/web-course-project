@@ -8,7 +8,14 @@ function getInvitations() {
     })
     .then(data => {
         invitations = data.value;
-        placeInvitations(invitations);
+        if(data.role==8)
+        {
+            placeInvitationsT(invitations);
+        }
+        if(data.role==7)
+        {
+            placeInvitations(invitations);
+        }
     })
     .catch(error => {
         console.error('Грешка при зареждане на поканите.');
@@ -17,13 +24,68 @@ function getInvitations() {
 
 function placeInvitations(invitations)
 {
+    counter = 1;
     invitations.forEach((invitation) =>{
-        const element = document.getElementById('table-inv');
-        counter = 1;
-        element.innerHTML = "<tr><th>"+counter+"</th><th>"+invitation.title+"</th><th>"+invitation.date+
-        "</th><th>"+invitation.time+"</th><th>"+invitation.subject+"</th><th>"+invitation.place+"</th></tr>";
-        counter++;
-    })
+            element = document.getElementById('tb');
+            tablerow = document.createElement("tr");
+            element.appendChild(tablerow);
+            tabledata1 = document.createElement("th");
+            tabledata1.innerText=counter;
+            tabledata2 = document.createElement("th");
+            tabledata2.innerText=invitation.title;
+            tabledata3 = document.createElement("th");
+            tabledata3.innerText=invitation.date;
+            tabledata4 = document.createElement("th");
+            tabledata4.innerText=invitation.time;
+            tabledata5 = document.createElement("th");
+            tabledata5.innerText=invitation.subject;
+            tabledata6 = document.createElement("th");
+            tabledata6.innerText=invitation.place;
+            tablerow.appendChild(tabledata1);
+            tablerow.appendChild(tabledata2);
+            tablerow.appendChild(tabledata3);        
+            tablerow.appendChild(tabledata4);
+            tablerow.appendChild(tabledata5);
+            tablerow.appendChild(tabledata6);
+            counter++;
+        });  
+}
+
+
+function placeInvitationsT(invitations)
+{
+    counter = 1;
+    invitations.forEach((invitation) =>{
+            element = document.getElementById('tb');
+            tablerow = document.createElement("tr");
+            element.appendChild(tablerow);
+            tabledata1 = document.createElement("th");
+            tabledata1.innerText=counter;
+            tabledata2 = document.createElement("th");
+            tabledata2.innerText=invitation.title;
+            tabledata3 = document.createElement("th");
+            tabledata3.innerText=invitation.date;
+            tabledata4 = document.createElement("th");
+            tabledata4.innerText=invitation.time;
+            tabledata5 = document.createElement("th");
+            tabledata5.innerText=invitation.subject;
+            tabledata6 = document.createElement("th");
+            tabledata6.innerText=invitation.place;
+            tabledata7 = document.createElement('th');
+            btn = document.createElement("button");
+            btn.innerText="Изтегли";
+            tabledata7.appendChild(btn);
+            tablerow.appendChild(tabledata1);
+            tablerow.appendChild(tabledata2);
+            tablerow.appendChild(tabledata3);        
+            tablerow.appendChild(tabledata4);
+            tablerow.appendChild(tabledata5);
+            tablerow.appendChild(tabledata6);
+            tablerow.appendChild(tabledata7);
+
+            counter++;
+        });  
     
 }
+
 getInvitations();

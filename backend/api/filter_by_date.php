@@ -1,18 +1,22 @@
 <?php
+    session_start();
+
     require_once "../db/db.php";
     require_once "../classes/invitation.php";
 
-    $input = json_decode(file_get_contents('php://input'), true); 
-
     function getInvitations($connection) {
-	    $sql = "SELECT * FROM `invitations` WHERE date=:date" ;
+	    $sql = "SELECT * FROM `invitations`";
 	    $query = $connection->prepare($sql);
-	    $query->execute(["date" => $input['date']]);
+	    $query->execute([]);
 
+        $input = json_decode(file_get_contents('php://input'), true); 
         $invitations = array();
 	    while ($row = $query->fetch()) {
-            $invitation = new Invitation($row['title'], $row['date'], $row['time'], $row['subject'], $row['place'], $_SESSION['id']);
-            array_push($invitations, $invitation);
+            if(strcmp($row['date'], $input) == 0)
+            {
+                $invitation = new Invitation($row['title'], $row['date'], $row['time'], $row['subject'], $row['place'], $_SESSION['id']);
+                array_push($invitations, $invitation);
+            }
 	    }
     	return $invitations;
     }
@@ -34,7 +38,7 @@
 
     $response = json_encode([
         'success' => true,
-        'message' => "Списък от всички покани на тази дата.",
+        'message' => "Списък от всички покани.",
         'value' => $invitations,
     ]);
 

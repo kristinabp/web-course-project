@@ -36,6 +36,7 @@
         'success' => true,
         'message' => "Списък от всички покани.",
         'value' => $invitations,
+        'role' => $_SESSION['role_id'],
     ]);
 
     echo $response;
