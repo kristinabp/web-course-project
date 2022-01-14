@@ -8,7 +8,7 @@ and PHP for the back-end part.
 It has the following functionallities:
 
 ✔ login 
-✔ registration as student or teacher
+✔ registration as a student or a teacher
 ✔ filters for students - by key word in the title of the presentation, by subject
 ✔ filters for teacher - by key word in the title of the presentation, by subject, by date
 ✔ teacher can see a report in which is shown which students have uploaded their invitations and which haven't
