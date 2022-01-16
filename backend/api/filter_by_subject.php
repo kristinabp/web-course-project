@@ -42,5 +42,5 @@
         'value' => $invitations,
     ]);
 
-
+ echo $response;
 ?>
