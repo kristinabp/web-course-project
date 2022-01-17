@@ -1,5 +1,3 @@
-
-
 const onFormSubmitted = event => {
     event.preventDefault();
 
