@@ -12,7 +12,7 @@
         $input = json_decode(file_get_contents('php://input'), true); 
         $invitations = array();
 	    while ($row = $query->fetch()) {
-            if(strcmp($row['subject'], $input) == 0)
+             if(strpos(strtolower($row['subject']), strtolower($input))!==false)
             {
                 $invitation = new Invitation($row['title'], $row['date'], $row['time'], $row['subject'], $row['place'], $_SESSION['id']);
                 array_push($invitations, $invitation);
