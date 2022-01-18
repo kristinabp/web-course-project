@@ -28,8 +28,6 @@ function placeInvitations(users)
             tabledata2.innerText=user.fn;
             tabledata3 = document.createElement("th");
             tabledata3.innerText=user.username;
-            console.log(user.username);
-            console.log(user.upload);
             tabledata4 = document.createElement("th");
             tabledata4.innerText=user.upload;
     
