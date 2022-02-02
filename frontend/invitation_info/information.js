@@ -23,13 +23,16 @@ const onFormSubmitted = event => {
 
     const formElement = event.target;
 	
-    const formData = {
+	const formData = new FormData(document.getElementById('user-form'));
+    /*const formData = {
 		title: formElement.querySelector("input[name='title']").value,
 		date: formElement.querySelector("input[name='date']").value,
         time: formElement.querySelector("input[name='time']").value,
         subject: formElement.querySelector("input[name='subject']").value,
 		place: formElement.querySelector("input[name='place']").value,
-    };
+		invitation: formElement.querySelector("input[name='invitation']").files[0],
+		
+    };*/
 	
 	const fields = [
 		formData.title,
@@ -37,6 +40,8 @@ const onFormSubmitted = event => {
 		formData.time,
 		formData.subject,	
 		formData.place,
+		formData.invitation,
+		
 	];
 	
 	const errors = [
@@ -50,7 +55,7 @@ const onFormSubmitted = event => {
 	if (validate(errors, fields)) {		
 		fetch('../../backend/api/get_invitation.php', {
 			method: 'POST',
-			body: JSON.stringify(formData),
+			body: formData,
 		})
 		.then(response=>response.json())
 		.then(response => {
