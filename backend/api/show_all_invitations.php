@@ -11,7 +11,7 @@
 
         $invitations = array();
 	    while ($row = $query->fetch()) {
-            $invitation = new Invitation($row['title'], $row['date'], $row['time'], $row['subject'], $row['place'], $_SESSION['id']);
+            $invitation = new Invitation($row['title'], $row['date'], $row['time'], $row['subject'], $row['place'],$row['user_id']);
             array_push($invitations, $invitation);
 	    }
     	return $invitations;
