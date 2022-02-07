@@ -7,14 +7,16 @@
         public $time;
         public $subject;
         public $place;
+        public $extension;
 
-        function __construct($title, $date, $time, $subject, $place, $user_id) {
+        function __construct($title, $date, $time, $subject, $place, $user_id,$extension) {
             $this->title = $title;
             $this->date = $date;
             $this->time = $time;
             $this->subject = $subject;
             $this->place = $place;
             $this->user_id = $user_id;
+            $this->extension = $extension;
         }
 
         public function validate(): void
@@ -53,7 +55,7 @@
                 ]);
             }
 
-            $sql = "INSERT INTO invitations (title, date, time, subject, place, user_id) VALUES (:title, :date, :time, :subject, :place, :user_id)";
+            $sql = "INSERT INTO invitations (title, date, time, subject, place, user_id,extension) VALUES (:title, :date, :time, :subject, :place, :user_id,:extension)";
             $stmt = $connection->prepare($sql);
             $insertResult = $stmt->execute([
                 "title"=>$this->title, 
@@ -61,7 +63,8 @@
                 "time"=>$this->time, 
                 "subject"=>$this->subject, 
                 "place"=>$this->place,
-                "user_id"=>$this->user_id]);
+                "user_id"=>$this->user_id,
+                "extension"=>$this->extension]);
             
             if (!$insertResult) {
                 $errorInfo = $insertStatement->errorInfo();
