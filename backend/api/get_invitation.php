@@ -5,13 +5,18 @@ session_start();
 require_once "../classes/invitation.php";
 
 
+$target_dir = "../../frontend/images/";
+$ext = explode('.', $_FILES["invitation"]["name"]);
+$imageFileType = strtolower($ext[1]); 
+
 $invitation = new Invitation(
   $_POST['title'],
   $_POST['date'],
   $_POST['time'],
   $_POST['subject'],
   $_POST['place'],
-  $_SESSION['id']
+  $_SESSION['id'],
+  $imageFileType
 );
 
 
@@ -28,9 +33,7 @@ try {
 
 ////////////////
 
-$target_dir = "../../frontend/images/";
-$ext = explode('.', $_FILES["invitation"]["name"]);
-$imageFileType = strtolower($ext[1]);
+
 
 $target_file = $target_dir . basename($_SESSION['id']) .  '.' . $imageFileType;
 $uploadOk = 1;
