@@ -32,7 +32,7 @@ $target_dir = "../../frontend/images/";
 $ext = explode('.', $_FILES["invitation"]["name"]);
 $imageFileType = strtolower($ext[1]);
 
-$target_file = $target_dir . basename($_SESSION['username']) .  '.' . $imageFileType;
+$target_file = $target_dir . basename($_SESSION['id']) .  '.' . $imageFileType;
 $uploadOk = 1;
 
 //var_dump($target_file );
